@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Symfony Standard Edition
 ========================
 
@@ -67,3 +68,6 @@ Enjoy!
 [11]: https://symfony.com/doc/2.8/logging.html
 [12]: https://symfony.com/doc/2.8/assetic/asset_management.html
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+=======
+# m2-eserv-projet-php
+>>>>>>> 44c41fdbbd94bbd4e110320809bf88b5ef832d09
