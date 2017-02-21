@@ -24,7 +24,7 @@ class TVSeries
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
@@ -45,7 +45,7 @@ class TVSeries
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=255, nullable=true)
+     * @ORM\Column(name="description", type="text", length=16777215, nullable=true)
      */
     private $description;
 

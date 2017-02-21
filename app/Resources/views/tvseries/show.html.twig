@@ -1,0 +1,53 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="{{ asset('uploads/' ~ tvserie.image) }}" alt="{{ tvserie.name }}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                {{ tvserie.name }}
+                            </h4>
+                            <p>
+                                <b>Auteur :</b> {{ tvserie.author }} - <b>Date de diffusion :</b> {{ tvserie.releasedAt|date("d/m/Y") }}<br>
+                            </p>
+                            <p>
+                                <b>Description :</b><br>
+                                {{ tvserie.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Liste des épidodes</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Episode n°</th>
+                        <th>Date de diffusion</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for episode in episodes %}
+                        <tr>
+                            <td>{{ episode.name }}</td>
+                            <td>{{ episode.episodeNumber }}</td>
+                            <td>{{ episode.datePublished|date('d/m/Y') }}</td>
+                            <td>{{ episode.description }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

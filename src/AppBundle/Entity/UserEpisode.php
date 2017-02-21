@@ -19,7 +19,7 @@ class UserEpisode
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     /**
      * @var Episode
@@ -28,7 +28,7 @@ class UserEpisode
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Episode")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $episode_id;
+    private $episode;
 
     /**
      * @var bool
@@ -46,23 +46,23 @@ class UserEpisode
 
 
     /**
-     * Get user_id
+     * Get user
      *
      * @return User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     /**
-     * Get episode_id
+     * Get episode
      *
      * @return Episode
      */
-    public function getEpisodeId()
+    public function getEpisode()
     {
-        return $this->episode_id;
+        return $this->episode;
     }
 
     /**
