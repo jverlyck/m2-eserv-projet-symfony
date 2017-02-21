@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * TVSeries
  *
  * @ORM\Table(name="tv_series")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TVSeriesRepository")
+ * @UniqueEntity("name")
  */
 class TVSeries
 {
@@ -25,6 +29,8 @@ class TVSeries
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(min=2)
+     * @Assert\Regex("/^[A-Za-z0-9 ()]+/")
      */
     private $name;
 
@@ -39,6 +45,7 @@ class TVSeries
      * @var \DateTime
      *
      * @ORM\Column(name="releasedAt", type="datetime", nullable=true)
+     * @Assert\DateTime()
      */
     private $releasedAt;
 
@@ -55,6 +62,12 @@ class TVSeries
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @var UploadedFile
+     * @Assert\File(maxSize = "3072k", mimeTypes = {"image/jpeg", "image/png"})
+     */
+    private $file;
 
 
     /**
@@ -180,5 +193,54 @@ class TVSeries
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set file
+     *
+     * @param UploadedFile|null $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function upload()
+    {
+        if (null === $this->file)
+            return;
+
+        $name = md5(uniqid()).'.'.$this->file->guessExtension();
+
+        var_dump($this->getUploadRootDir());
+
+        $this->file->move($this->getUploadRootDir(), $name);
+
+        $this->image = $name;
+    }
+
+    public function removeUpload()
+    {
+        unlink($this->getUploadRootDir().'/'.$this->image);
+    }
+
+    public function getUploadDir()
+    {
+        return 'uploads';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 }
