@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="row">
+
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <h2>Editer votre profil</h2>
+                    </div>
+
+                    <div class="row">
+                        {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+

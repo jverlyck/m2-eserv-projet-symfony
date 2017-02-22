@@ -1,0 +1,74 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <h2>Inscription</h2>
+                    </div>
+
+                    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="post">
+                        {{ form_widget(form._token) }}
+
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6 form-group">
+                                <label for="fos_user_registration_form_email" class="required label_input">Adresse e-mail</label>
+                                <input class="form-control" type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" />
+                                {% if form_errors(form.email) %}
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        {{ form_errors(form.email) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6 form-group">
+                                <label for="fos_user_registration_form_username" class="required label_input">Nom d'utilisateur</label>
+                                <input class="form-control" type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" />
+                                {% if form_errors(form.username) %}
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        {{ form_errors(form.username) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6 form-group">
+                                <label for="fos_user_registration_form_plainPassword_first" class="required label_input">Mot de passe</label>
+                                <input class="form-control" type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" />
+                                {% if form_errors(form.plainPassword.first) %}
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        {{ form_errors(form.plainPassword.first) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6 form-group">
+                                <label for="fos_user_registration_form_plainPassword_second" class="required label_input">Saisissez le mot de passe à nouveau</label>
+                                <input class="form-control" type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" />
+                                {% if form_errors(form.plainPassword.second) %}
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        {{ form_errors(form.plainPassword.second) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <input class="btn btn-lg btn-primary" type="submit" value="Inscription" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

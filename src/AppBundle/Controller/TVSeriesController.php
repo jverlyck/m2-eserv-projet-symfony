@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
@@ -75,6 +76,7 @@ class TVSeriesController extends Controller
      * Formulaire d'ajout d'une série tv
      *
      * @Route("/ajouter", name="app_tvseries_add")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request)
     {
@@ -105,6 +107,7 @@ class TVSeriesController extends Controller
      * Formulaire d'édition d'une série tv
      *
      * @Route("/editer/{name}", name="app_tvseries_edit", requirements={"name" = "[A-Za-z0-9 ()]+"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, $name)
     {
@@ -146,6 +149,7 @@ class TVSeriesController extends Controller
      * Suppression d'une série tv
      *
      * @Route("/supprimer/{name}", name="app_tvseries_delete", requirements={"name" = "[A-Za-z0-9 ()]+"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function removeAction($name)
     {

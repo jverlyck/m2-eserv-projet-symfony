@@ -1,0 +1,45 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+ {% trans_default_domain 'FOSUserBundle' %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/dg_user/login.css') }}" type="text/css" />
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <h2>Réinitialiser le mot de passe</h2>
+                    </div>
+
+                    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-6 form-group">
+                            <label for="fos_user_resetting_form_plainPassword_first" class="label_input required">Nouveau mot de passe</label>
+                            <input type="password" id="fos_user_resetting_form_plainPassword_first" name="fos_user_resetting_form[plainPassword][first]" class="form-control" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-6 form-group">
+                            <label for="fos_user_resetting_form_plainPassword_second" class="label_input required">Vérification</label>
+                            <input type="password" id="fos_user_resetting_form_plainPassword_second" name="fos_user_resetting_form[plainPassword][second]" class="form-control" required="required" />
+                        </div>
+                    </div>
+
+                    {{ form_widget(form._token) }}
+
+                    <div class="row">
+                        <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary" value="{{ 'resetting.reset.submit'|trans }}" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

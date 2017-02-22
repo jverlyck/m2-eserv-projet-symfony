@@ -1,0 +1,45 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="post">
+    {{ form_widget(form._token) }}
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 form-group">
+            <label for="fos_user_profile_form_username" class="required label_input">Votre nom d'utilisateur</label>
+            <input class="form-control" type="text" id="fos_user_profile_form_username" name="fos_user_profile_form[username]" value="{{ form.username.vars['value'] }}" required="required" maxlength="255" pattern=".{2,}" />
+            {% if form_errors(form.username) %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ form_errors(form.username) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 form-group">
+            <label for="fos_user_profile_form_email" class="required label_input">Votre adresse électronique</label>
+            <input class="form-control" type="email" id="fos_user_profile_form_email" name="fos_user_profile_form[email]" value="{{ form.email.vars['value'] }}" required="required" maxlength="255" pattern=".{2,}" />
+            {% if form_errors(form.email) %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ form_errors(form.email) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 form-group">
+            <label for="fos_user_profile_form_current_password" class="required label_input">Mot de passe</label>
+            <input class="form-control" type="password" id="fos_user_profile_form_current_password" name="fos_user_profile_form[current_password]" required="required" />
+            {% if form_errors(form.current_password) %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ form_errors(form.current_password) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <input class="btn btn-lg btn-primary" type="submit" value="Modifier" />
+    </div>
+</form>

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class EpisodeController
@@ -44,6 +45,7 @@ class EpisodeController extends Controller
      * Formulaire d'ajout d'un épisode
      *
      * @Route("/ajouter", name="app_episode_add")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request)
     {
@@ -74,6 +76,7 @@ class EpisodeController extends Controller
      * Formulaire d'édition d'un épisode
      *
      * @Route("/editer/{id}", name="app_episode_edit", requirements={"id" = "[a-z0-9-]+"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, $id)
     {
@@ -115,6 +118,7 @@ class EpisodeController extends Controller
      * Suppression d'un épisode
      *
      * @Route("/supprimer/{id}", name="app_episode_delete", requirements={"name" = "[a-z0-9-]+"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function removeAction($id)
     {

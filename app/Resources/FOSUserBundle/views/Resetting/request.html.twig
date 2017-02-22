@@ -1,0 +1,48 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/dg_user/login.css') }}" type="text/css" />
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <h2>Réinitialiser le mot de passe</h2>
+                    </div>
+
+                    {% if invalid_username is defined %}
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 alert alert-danger alert-dismissible" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request"
+
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6 form-group">
+                                <label for="username" class="label_input">{{ 'resetting.request.username'|trans }}</label>
+                                <input type="text" id="username" name="username" class="form-control" required="required" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary" value="{{ 'resetting.request.submit'|trans }}" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

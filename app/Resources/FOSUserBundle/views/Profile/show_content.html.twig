@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<p class="label_input"><b>Votre nom d'utilisateur</b><p>
+<p class="label_input">{{ user.username }}
+<p class="label_input"><b>Votre adresse électronique</b><p>
+<p class="label_input">{{ user.email }}</p>
+<p class="label_input"><a href="{{ path('fos_user_profile_edit') }}">Editer mon profil</a></p>
+
+
