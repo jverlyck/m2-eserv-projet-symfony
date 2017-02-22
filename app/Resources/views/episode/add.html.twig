@@ -1,0 +1,57 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+                    {{ form_errors(form) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.name, "Nom de l'épisode") }}
+                        {{ form_errors(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.tvseries, "Nom de la série") }}
+                        {{ form_errors(form.tvseries) }}
+                        {{ form_widget(form.tvseries, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.episodeNumber, "Numéro de l'épisode") }}
+                        {{ form_errors(form.episodeNumber) }}
+                        {{ form_widget(form.episodeNumber, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.datePublished, "Numéro de l'épisode") }}
+                        {{ form_errors(form.datePublished) }}
+                        {{ form_widget(form.datePublished, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.description, "Description de l'épisode") }}
+                        {{ form_errors(form.description) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.file, "Image de l'épisode") }}
+                        {{ form_errors(form.file) }}
+                        {{ form_widget(form.file) }}
+                        <p class="help-block">Veuillez choisir l'image de l'épisode</p>
+                    </div>
+
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

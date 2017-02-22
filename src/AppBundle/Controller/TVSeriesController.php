@@ -143,7 +143,7 @@ class TVSeriesController extends Controller
     }
 
     /**
-     * Formulaire d'édition d'une série tv
+     * Suppression d'une série tv
      *
      * @Route("/supprimer/{name}", name="app_tvseries_delete", requirements={"name" = "[A-Za-z0-9 ()]+"})
      */
