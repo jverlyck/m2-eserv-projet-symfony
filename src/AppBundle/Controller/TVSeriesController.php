@@ -59,7 +59,7 @@ class TVSeriesController extends Controller
 
         $tvserie = $tvseries_repository->findOneByName($name);
         if(is_null($tvserie)) {
-            $response = new Response();
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
             $response->setStatusCode(404);
             return $response;
         }
@@ -117,7 +117,7 @@ class TVSeriesController extends Controller
 
         $tvseries = $tvseries_repository->findOneByName($name);
         if(is_null($tvseries)) {
-            $response = new Response();
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
             $response->setStatusCode(404);
             return $response;
         }
@@ -160,7 +160,7 @@ class TVSeriesController extends Controller
 
         $tvseries = $tvseries_repository->findOneByName($name);
         if(is_null($tvseries)) {
-            $response = new Response();
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
             $response->setStatusCode(404);
             return $response;
         }

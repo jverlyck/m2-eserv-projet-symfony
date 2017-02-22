@@ -86,7 +86,7 @@ class EpisodeController extends Controller
 
         $episode = $episode_repository->find($id);
         if(is_null($episode)) {
-            $response = new Response();
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
             $response->setStatusCode(404);
             return $response;
         }
@@ -128,7 +128,7 @@ class EpisodeController extends Controller
 
         $episode = $episode_repository->find($id);
         if(is_null($episode)) {
-            $response = new Response();
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
             $response->setStatusCode(404);
             return $response;
         }
