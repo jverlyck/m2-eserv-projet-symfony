@@ -56,6 +56,7 @@ class TVSeriesController extends Controller
 
         $tvseries_repository = $em->getRepository('AppBundle:TVSeries');
         $episode_repository = $em->getRepository('AppBundle:Episode');
+        $user_episode_repository = $em->getRepository('AppBundle:UserEpisode');
 
         $tvserie = $tvseries_repository->findOneByName($name);
         if(is_null($tvserie)) {
@@ -66,9 +67,19 @@ class TVSeriesController extends Controller
 
         $episodes = $episode_repository->findByTvseries($tvserie->getId());
 
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $list_episodes = [];
+        foreach($episodes as $episode) {
+            $list_episodes[] = [
+                'episode' => $episode,
+                'watched' => $user_episode_repository->isWatched($user, $episode)
+            ];
+        }
+
         return $this->render('tvseries/show.html.twig', [
             'tvserie'  => $tvserie,
-            'episodes' => $episodes
+            'episodes' => $list_episodes
         ]);
     }
 

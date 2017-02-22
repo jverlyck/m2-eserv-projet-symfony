@@ -143,4 +143,32 @@ class EpisodeController extends Controller
             'name' => $tvseries_name
         ]));
     }
+
+    /**
+     * Action de visionnage d'un épisode par l'utilisateur
+     *
+     * @Route("/visionner/{id}", name="app_episode_watch", requirements={"name" = "[a-z0-9-]+"})
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function watchAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user_episode_repository = $em->getRepository('AppBundle:UserEpisode');
+        $episode_repository = $em->getRepository('AppBundle:Episode');
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $episode = $episode_repository->find($id);
+        if(is_null($episode)) {
+            $response = $this->render('TwigBundle:Exception:error404.html.twig');
+            $response->setStatusCode(404);
+            return $response;
+        }
+
+        $user_episode_repository->add($user, $episode);
+
+        return $this->redirect($this->generateUrl('app_tvseries_show', [
+            'name' => $episode->getTvseries()->getName()
+        ]));
+    }
 }

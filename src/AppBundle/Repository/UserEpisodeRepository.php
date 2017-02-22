@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Episode;
+use AppBundle\Entity\User;
+use AppBundle\Entity\UserEpisode;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -12,4 +15,56 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserEpisodeRepository extends EntityRepository
 {
+    /**
+     * Ajoute le visionnage de l'episode par l'utilisateur
+     *
+     * @param User $user
+     * @param Episode $episode
+     */
+    public function add(User $user, Episode $episode)
+    {
+        if($this->isWatched($user, $episode) != 0)
+            return;
+
+        $this->disableCurrent();
+
+        $user_episode = new UserEpisode();
+        $user_episode->setUser($user);
+        $user_episode->setEpisode($episode);
+        $user_episode->setCurrent(true);
+        $user_episode->setWatchedAt(new \DateTime());
+
+        $this->_em->persist($user_episode);
+        $this->_em->flush();
+    }
+
+    /**
+     * Passe l'ensemble current des entrée en false;
+     */
+    private function disableCurrent() {
+        $user_episodes = $this->findByCurrent(true);
+
+        foreach($user_episodes as $user_episode) {
+            $user_episode->setCurrent(false);
+        }
+    }
+
+    /**
+     * Retourne 0 si l'épisode n'a pas été visionné, 1 si l'épisode a été
+     * visionné mais n'est pas celui courant sinon 2
+     *
+     * @param $episode
+     * @return int
+     */
+    public function isWatched($user, $episode) {
+        $found = $this->findOneBy(array(
+            'episode' => $episode,
+            'user' => $user
+        ));
+
+        if(is_null($found))
+            return 0;
+
+        return $found->getCurrent() == 1 ? 2 : 1;
+    }
 }

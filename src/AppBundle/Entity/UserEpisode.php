@@ -44,6 +44,18 @@ class UserEpisode
      */
     private $watchedAt;
 
+    /**
+     * Set User
+     *
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
     /**
      * Get user
@@ -53,6 +65,19 @@ class UserEpisode
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set Episode
+     *
+     * @param Episode $episode
+     * @return $this
+     */
+    public function setEpisode(Episode $episode)
+    {
+        $this->episode = $episode;
+
+        return $this;
     }
 
     /**
