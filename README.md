@@ -1,73 +1,27 @@
-<<<<<<< HEAD
-Symfony Standard Edition
-========================
+# Projet TVSeries (master 2 e-services)
+## Jérôme Verlyck
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+### Description
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+Application de visualisation de séries et de leurs épisodes. Lorsqu'on est pas connecté, l'utilisateur peut consulter les séries et les épisodes
+associés. Lorsqu'il est connecté, il peut ajouter de nouvelles séries ainsi que des épisodes. Il peut également signaler les épisodes qu'il a déjà visionné
+et celui en cours de visionnage.
 
-What's inside?
---------------
+En tant qu'admin, on peut modifier/supprimer les séries et les épisodes.
 
-The Symfony Standard Edition is configured with the following defaults:
+L'application utilise le bundle fosuserbundle pour la gestion des utilisateurs et le bundle fixturesbundle pour la mise en place de jeu de données de test.
 
-  * An AppBundle you can use to start coding;
+### Commandes
 
-  * Twig as the only configured template engine;
+**Commande pour générer la base de données**
+php app/console doctrine:schema:update --force
 
-  * Doctrine ORM/DBAL;
+**Commande pour les fixutres**
+php app/console doctrine:fixtures:load
 
-  * Swiftmailer;
+**Commande pour créer les utilisateurs**
+admin: php app/console fos:user:create Admin admin@admin.com Admin
+user: php app/console fos:user:create User user@user.com User
 
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/doctrine.html
-[8]:  https://symfony.com/doc/2.8/templating.html
-[9]:  https://symfony.com/doc/2.8/security.html
-[10]: https://symfony.com/doc/2.8/email.html
-[11]: https://symfony.com/doc/2.8/logging.html
-[12]: https://symfony.com/doc/2.8/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-=======
-# m2-eserv-projet-php
->>>>>>> 44c41fdbbd94bbd4e110320809bf88b5ef832d09
+**Passer l'utilisateur Admin en ROLE_ADMIN**
+php app/console fos:user:promote Admin ROLE_ADMIN
