@@ -14,14 +14,19 @@ L'application utilise le bundle fosuserbundle pour la gestion des utilisateurs e
 ### Commandes
 
 **Commande pour générer la base de données**
+
 php app/console doctrine:schema:update --force
 
 **Commande pour les fixutres**
+
 php app/console doctrine:fixtures:load
 
 **Commande pour créer les utilisateurs**
+
 admin: php app/console fos:user:create Admin admin@admin.com Admin
+
 user: php app/console fos:user:create User user@user.com User
 
 **Passer l'utilisateur Admin en ROLE_ADMIN**
+
 php app/console fos:user:promote Admin ROLE_ADMIN
